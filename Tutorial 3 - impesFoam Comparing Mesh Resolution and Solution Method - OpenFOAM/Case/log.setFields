@@ -1,0 +1,37 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  10
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 10-c4cf895ad8fa
+Exec   : setFields
+Date   : Feb 22 2024
+Time   : 23:15:45
+Host   : "HWLAP0350-EPS"
+PID    : 15500
+I/O    : uncollated
+Case   : /home/ap2095/OpenFOAM/ap2095-10/run/injection
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+Reading "setFieldsDict"
+
+Setting field default values
+    Setting internal values of volScalarField Sb
+    Setting internal values of volScalarField n
+
+Setting field region values
+    Adding cells with center within boxes 1((0 0 0) (5 10 1))
+    Setting internal values of volScalarField n
+
+End
+
