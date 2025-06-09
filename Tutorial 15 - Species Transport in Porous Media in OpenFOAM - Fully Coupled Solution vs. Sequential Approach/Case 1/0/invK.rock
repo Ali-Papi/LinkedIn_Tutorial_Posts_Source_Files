@@ -1,0 +1,39 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Version:  foam-extend 5.0
+    \\  /    A nd           | PorousMedia: A Wikki Brasil project
+     \\/     M anipulation  | Solver: coupledMatrixFoam
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volDiagTensorField;
+    location    "0";
+    object      invK.rock;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions                    [0 -2 0 0 0 0 0];
+internalField                 uniform (1e4 1e4 1e4);
+boundaryField
+{
+    inlet
+    {
+        type                          fixedValue ;
+       	value                         uniform (1e4 1e4 1e4);
+	//type                          zeroGradient;
+    }
+    outlet
+    {
+        type                          zeroGradient;
+    }
+    yzfaces
+    {
+        type                          empty;
+    }
+}
+
+
+//************************************************************************** //

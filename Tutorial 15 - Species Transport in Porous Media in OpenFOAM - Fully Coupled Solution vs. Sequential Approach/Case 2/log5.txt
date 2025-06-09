@@ -1,0 +1,69 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | foam-extend: Open Source CFD                    |
+|  \\    /   O peration     | Version:     5.0                                |
+|   \\  /    A nd           | Web:         http://www.foam-extend.org         |
+|    \\/     M anipulation  | For copyright notice see file Copyright         |
+\*---------------------------------------------------------------------------*/
+Build  : 5.0-287705b4a589
+Exec   : coupledMatrixFoam
+Date   : Jun 08 2025
+Time   : 16:47:54
+Host   : "HWLAP0350-EPS"
+PID    : 15725
+CtrlDict : "/home/ap2095/foam/ap2095-5.0/run/cases/6.3.2.1.1D_2phase_2componentGas_YCO2i_0_coupledMatrixFoam/system/controlDict"
+Case   : /home/ap2095/foam/ap2095-5.0/run/cases/6.3.2.1.1D_2phase_2componentGas_YCO2i_0_coupledMatrixFoam
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+allowSystemOperations : Disallowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+Selecting phaseSystem basicMultiphaseSystem
+Selecting phaseModel for water: pureIsothermalPhaseModel
+Calculating face flux field phi.water
+Selecting phaseModel for gas: multiComponentIsothermalPhaseModel
+Calculating face flux field phi.gas
+Selecting phaseModel for rock: purePorousIsothermalPhaseModel
+Selecting UEqnModel for water_relativeWith_rock: Darcy
+Selecting KrModel for water_relativeWith_rock: BrooksAndCorey
+Selecting UEqnModel for gas_relativeWith_rock: Darcy
+Selecting KrModel for gas_relativeWith_rock: BrooksAndCorey
+Selecting pcModel for water_relativeWith_gas: BrooksAndCorey
+
+Starting time loop
+
+Courant Number max: 10
+deltaT = 0.0909091
+Time = 0.0909091
+
+COUPLED: iteration 1
+ This line is being read from the pure loop. Even though we have species, my loop still is operated
+ This is species loop (else)
+Both matrices are symmetric: inserting only upper triangle
+BiCGStab:  Solving for pAs, Initial residual = (1 1 1 1), Final residual = (7.24187e-26 5.15026e-24 3.66025e-28 6.78576e-24), No Iterations 1
+rock fraction, min, max = 0.8 0.8 0.8
+water fraction, min, max = 0.189215 0 0.190025
+gas fraction, min, max = 0.201961 0.0909091 0.446836
+Phase-sum volume fraction, min, max = 1.19118 1 1.42451
+COUPLED: iteration 2
+ This line is being read from the pure loop. Even though we have species, my loop still is operated
+ This is species loop (else)
+Both matrices are symmetric: inserting only upper triangle
+BiCGStab:  Solving for pAs, Initial residual = (0.0148173 0.684463 0.197056 0.0293126), Final residual = (6.51371e-25 2.65973e-25 7.47282e-25 4.23362e-25), No Iterations 1
+rock fraction, min, max = 0.8 0.8 0.8
+water fraction, min, max = 0.191766 0 0.213777
+gas fraction, min, max = 0.318484 0.0429268 1.21782
+Phase-sum volume fraction, min, max = 1.31025 0.989299 2.23159
+COUPLED: iteration 3
+ This line is being read from the pure loop. Even though we have species, my loop still is operated
+ This is species loop (else)
+Both matrices are symmetric: inserting only upper triangle
+BiCGStab:  Solving for pAs, Initial residual = (0.0108824 0.80124 0.158866 0.0132642), Final residual = (1.316e-26 3.38533e-25 1.02788e-24 2.12809e-27), No Iterations 1
+rock fraction, min, max = 0.8 0.8 0.8
+water fraction, min, max = 0.190702 -454.06 130.86
+gas fraction, min, max = 1539.07 0 70559.5
+Phase-sum volume fraction, min, max = 1545.66 0.8 70660.3

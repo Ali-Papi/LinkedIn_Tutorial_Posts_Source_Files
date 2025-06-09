@@ -1,0 +1,167 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Version:  foam-extend 5.0
+    \\  /    A nd           | PorousMedia: A Wikki Brasil project
+     \\/     M anipulation  | Solver: coupledMatrixFoam
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvSchemes;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+ddtSchemes
+{
+    default                             Euler;
+}
+
+gradSchemes
+{
+    default                             Gauss linear;
+}
+
+divSchemes
+{
+    default                             Gauss linear;
+    div(phip,alpha)                     Gauss upwind;
+    div(phig,alpha)                     Gauss limitedLinear 1;
+}
+
+laplacianSchemes
+{
+    default                             Gauss linear uncorrected;
+}
+
+interpolationSchemes
+{
+    default                             linear;
+}
+
+snGradSchemes
+{
+    default                             uncorrected;
+}
+
+// ************************************************************************* //
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Version:  foam-extend 5.0
+    \\  /    A nd           | PorousMedia: A Wikki Brasil project
+     \\/     M anipulation  | Solver: coupledMatrixFoam
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvSolution;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+blockSolver
+{
+    pAs
+    {
+        solver              BiCGStab;
+        preconditioner      ILUC0;
+
+        tolerance           1e-08;
+        relTol              0.001;
+
+        minIter             1;
+        maxIter             1000;
+    }
+}
+
+solvers
+{
+    ".*CO2"
+    {
+        solver          BiCGStab;
+        preconditioner  DILU;
+        tolerance       1e-6;
+        relTol          0;
+    };
+}
+
+COUPLED
+{
+    nOuterCorrectors            50;
+    
+    residualControl
+    {
+        pAs
+        {
+            tolerance   1e-3;
+        }
+    }
+}
+
+relaxationFactors
+{
+    fields
+    {}
+    equations 
+    {}
+}
+
+
+// ************************************************************************* //
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | foam-extend: Open Source CFD                    |
+|  \\    /   O peration     | Version:     5.0                                |
+|   \\  /    A nd           | Web:         http://www.foam-extend.org         |
+|    \\/     M anipulation  | For copyright notice see file Copyright         |
+\*---------------------------------------------------------------------------*/
+Build  : 5.0-287705b4a589
+Exec   : blockMesh
+Date   : May 31 2025
+Time   : 19:45:31
+Host   : "HWLAP0350-EPS"
+PID    : 31813
+CtrlDict : "/home/ap2095/foam/ap2095-5.0/run/compositionalDarcyFoam/tutorials/6.3.2.1.1D_2phase_2componentGas_YCO2i_0_compositionalDarcyFoam/system/controlDict"
+Case   : /home/ap2095/foam/ap2095-5.0/run/compositionalDarcyFoam/tutorials/6.3.2.1.1D_2phase_2componentGas_YCO2i_0_compositionalDarcyFoam
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+allowSystemOperations : Disallowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+
+Creating block mesh from
+    "/home/ap2095/foam/ap2095-5.0/run/compositionalDarcyFoam/tutorials/6.3.2.1.1D_2phase_2componentGas_YCO2i_0_compositionalDarcyFoam/system/blockMeshDict"
+
+
+Creating block mesh topology
+
+Creating polyMesh from blockMesh
+
+There are no merge patch pairs edges
+
+Writing polyMesh
+----------------
+Mesh Information
+----------------
+  boundingBox: (0 0 0) (0.1 0.035 0.035)
+  nPoints: 404
+  nCells: 100
+  nFaces: 501
+  nInternalFaces: 99
+----------------
+Patches
+----------------
+  patch 0 (start: 99 size: 1) name: inlet
+  patch 1 (start: 100 size: 1) name: outlet
+  patch 2 (start: 101 size: 400) name: yzfaces
+
+End
+

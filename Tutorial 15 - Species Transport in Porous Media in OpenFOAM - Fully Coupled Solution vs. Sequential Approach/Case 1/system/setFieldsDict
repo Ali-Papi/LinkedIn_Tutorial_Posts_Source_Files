@@ -1,0 +1,42 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Version:  foam-extend 5.0
+    \\  /    A nd           | PorousMedia: A Wikki Brasil project
+     \\/     M anipulation  | Solver: coupledMatrixFoam
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      setFieldsDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+defaultFieldValues            ( );
+regions                       
+(
+    boxToCell
+    {
+        box                           (-1e20 -1e20 -1e20) ( 1e20 0.5 1e20);
+        fieldValues                   
+        (
+            volScalarFieldValue alpha.gas 0.1
+            volScalarFieldValue alpha.water 0.1
+        );
+    }
+    boxToCell
+    {
+        box                           (-1e20 0.5 -1e20 ) ( 1e20 1e20 1e20);
+        fieldValues                   
+        (
+            volScalarFieldValue alpha.gas 0.2
+            volScalarFieldValue alpha.water 0.0
+        );
+    }
+);
+
+
+//************************************************************************** //
