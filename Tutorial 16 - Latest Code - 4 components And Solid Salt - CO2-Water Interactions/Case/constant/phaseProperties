@@ -1,0 +1,112 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Version:  foam-extend 5.0
+    \\  /    A nd           | PorousMedia: A Wikki Brasil project
+     \\/     M anipulation  | Solver: coupledMatrixFoam
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      phaseProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+type basicMultiphaseSystem;
+
+phases (water gas rock);
+
+/* water
+{
+    type            pureIsothermalPhaseModel;
+    rho0            1000;
+    psi             0;
+    mu              0.001;
+    residualAlpha   1e-6;
+} */
+
+/* gas
+{
+    type            pureIsothermalPhaseModel;
+    rho0            1;
+    psi             0;
+    mu              1.76e-05;
+    residualAlpha   1e-6;
+} */
+
+water
+{
+    type            multiComponentIsothermalPhaseModel;
+    species             4(CO2 H2O Na Cl);
+    rho0.CO2            1000;
+    rho0.H2O            1000;
+    rho0.Na             1000;
+    rho0.Cl             1000;
+    psi.CO2             0;
+    psi.H2O             0;
+    psi.Na              0;
+    psi.Cl              0;
+    mu              4.4e-4; //0.001;
+    residualAlpha   1e-6;
+}
+
+
+gas
+{
+    type            multiComponentIsothermalPhaseModel;
+    species         3(CO2 H2O NN);
+    rho0.CO2            275;
+    rho0.H2O            275;
+    rho0.NN             275;
+    psi.CO2             0;
+    psi.NN              0;
+    psi.H2O             0;
+    mu              2.5e-05; //1.76e-05;
+    residualAlpha   1e-6;
+}
+
+rock
+{
+    type            purePorousIsothermalPhaseModel;
+    rho0            2713;
+    psi             0;
+    residualAlpha   1e-6;
+}
+
+momentum
+{
+    water_relativeWith_rock
+    {
+        type        Darcy;
+        KrModel     BrooksAndCorey;
+        eta         2;
+    }
+
+    gas_relativeWith_rock
+    {
+        type        Darcy;
+        KrModel     BrooksAndCorey;
+        eta         2;
+    }
+}
+
+massTransfer{}
+
+capillarity
+{}
+
+/* capillarity
+{
+    water_relativeWith_gas
+    {
+        type        BrooksAndCorey;
+        pc0         0.0001;
+        zeta        0.5;
+        eta         2;
+    }
+} */
+
+// ************************************************************************* //
